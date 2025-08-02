@@ -1,0 +1,16 @@
+@define-color foreground rgba(255, 168, 14, 0.4);
+@define-color background #9141ac;
+@define-color rgb-background rgba(0, 0, 0, 0.2);
+
+@define-color text-color #ffffff;
+@define-color border-color rgba(18, 154, 231, 0.40);
+@define-color border-color2 #613583;
+@define-color border-color3 rgba(255, 168, 14, 0.4);
+@define-color color1 #ffffff;
+@define-color color2 #ffffff;
+@define-color color3 #ffffff;
+@define-color color4 #99c1f1;
+@define-color color5 #3584e4;
+@define-color color6 #62a0ea;
+@define-color color7 #00F3EE;
+@define-color color8 #21AEAB;

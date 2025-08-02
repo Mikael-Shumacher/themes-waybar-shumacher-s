@@ -1,0 +1,138 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top", // Waybar at top layer
+    "position": "bottom", // Waybar position (top|bottom|left|right)
+    //"height": 8, // Waybar height (to be removed for auto height)
+    "width": 1350, // Waybar width
+    // "spacing": 4, // Gaps between modules (4px)
+    
+    // Choose the order of the modules
+    "modules-left": [ 
+    	"custom/arch",
+    	"hyprland/workspaces",
+        "cpu",
+    	"memory",
+        "temperature", 
+		"wlr/taskbar"
+		//"hyprland/window"
+    ],
+    
+    "modules-center": [
+		"custom/wallpaper",
+    	"clock",
+		"custom/power",
+    ],
+    
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "custom/bluetooth",
+        "battery",
+        "battery#bat2",
+    ],
+    
+    // Modules configuration*/**
+    "custom/bluetooth": {
+      "format": "{}",
+      "exec": "~/.config/waybar/scripts/bluetooth_status.sh",
+      "interval": 5,
+      "on-click": "blueman-manager",
+      "tooltip": true,
+      "return-type": "json"
+    },
+    "custom/arch":{
+    	"format": "󰣇",
+    	"on-click": ""	
+    },
+    "hyprland/workspaces":{
+    	"format": "{}",
+    	"on-scroll-up": "hyprctl dispatch workspace e-1",
+    	"on-scroll-down": "hyprctl dispatch workspace e+1",
+    	"persistent-workspaces":{
+    		"*":5
+    	}
+    },
+    "custom/wallpaper":{
+    	"format": " ",
+    	"on-click": "/home/shumacher02/.config/hypr/scripts/wallpapers.sh"	
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "  {usage}%" ,
+        "on-click": "btop"	
+    },
+    "memory": {
+        "format": "   {}%",
+        "exec": "btop",
+        "interval": 5,
+        "on-click": "btop"	
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{icon} {temperatureC}°C ",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon} ",
+        "format-full": "{capacity}% {icon} ",
+        "format-charging": "{capacity}%  ",
+        "format-plugged": "{capacity}%  ",
+        "format-alt": "{time} {icon} ",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon} ",
+        "format-bluetooth": "{volume}% {icon} ",
+        "format-bluetooth-muted": " {icon}",
+        "format-muted": " {format_source}",
+        "format-source": "  {volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/power": {
+        "format" : "⏻",
+		"on-click": "nwg-bar"
+		}
+    }
+}
